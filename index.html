@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Intérieurs Privés Rennes — Créateur d’intérieurs sur mesure</title>
 
 <!-- Google Fonts -->
@@ -37,58 +37,47 @@ header{
 nav{
   max-width:1400px;margin:0 auto;padding:1rem 5%;
   display:flex;align-items:center;justify-content:space-between;
+  flex-wrap: wrap;
 }
-.logo{font-family:'Lora',serif;color:var(--dore);font-weight:600;font-size:1.2rem}
-.nav-links{display:flex;gap:1.6rem;list-style:none}
-.nav-links a{color:var(--blanc-casse);text-decoration:none;position:relative;padding:6px 0}
-.nav-links a::after{content:'';position:absolute;left:0;bottom:-6px;width:0;height:2px;background:var(--dore);transition:width .25s}
+.logo{
+  font-family:'Lora',serif;color:var(--dore);font-weight:600;font-size:1.2rem
+}
+.nav-links{
+  display:flex;gap:1.6rem;list-style:none;flex-wrap: wrap;
+}
+.nav-links a{
+  color:var(--blanc-casse);text-decoration:none;position:relative;padding:6px 0;
+}
+.nav-links a::after{
+  content:'';position:absolute;left:0;bottom:-6px;width:0;height:2px;background:var(--dore);transition:width .25s;
+}
 .nav-links a:hover::after{width:100%}
 .nav-links a:hover{color:var(--dore)}
 
-/* HERO avec image fixe */
+/* HERO */
 .hero {
   position: relative;
   height: 100vh;
-  background-image: url('images/hero-poster.jpg'); /* <-- chemin exact vers ton image */
+  background-image: url('images/hero-poster.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-attachment: fixed;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   color: #fff;
 }
-
 .hero-overlay {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0, 0, 0, 0.45);
-  z-index: 1;
+  position: absolute;top:0;left:0;width:100%;height:100%;
+  background: rgba(0,0,0,0.45);z-index:1;
 }
-
-.hero-content {
-  position: relative;
-  z-index: 2;
-  max-width: 800px;
-  padding: 2rem;
-  animation: fadeInUp 1.2s ease forwards;
+.hero-content{
+  position: relative;z-index:2;max-width:800px;padding:2rem;
 }
-
-.hero h1 {
-  font-size: 3rem;
-  color: #d4af37;
-  margin-bottom: 1.5rem;
-  letter-spacing: 2px;
-  text-shadow: 0 4px 20px rgba(0,0,0,0.4);
-}
-
-/* Animation douce à l’apparition du texte */
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: translateY(0); }
+.hero h1{
+  font-size:3rem;color:#d4af37;margin-bottom:1.5rem;letter-spacing:2px;text-shadow:0 4px 20px rgba(0,0,0,0.4);
+  line-height:1.2;
 }
 
 /* Sections */
@@ -96,7 +85,7 @@ section{padding:5rem 5%;max-width:1400px;margin:0 auto}
 .section-title{text-align:center;font-size:2.2rem;margin-bottom:2.5rem;color:var(--anthracite);position:relative}
 .section-title::after{content:'';position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);width:80px;height:3px;background:var(--dore)}
 
-/* A propos */
+/* À propos */
 .about-content{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:center}
 .about-text p{color:#333;font-size:1.02rem;line-height:1.85;margin-bottom:1rem}
 .about-image img{width:100%;border-radius:10px;display:block;box-shadow:0 10px 30px rgba(0,0,0,.15)}
@@ -112,7 +101,6 @@ section{padding:5rem 5%;max-width:1400px;margin:0 auto}
 .lightbox img{max-width:92%;max-height:84%;border-radius:8px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
 .lightbox .caption{color:#fff;margin-top:.8rem;text-align:center;font-size:.95rem}
 .lightbox-close{position:absolute;top:24px;right:28px;color:var(--dore);font-size:2rem;cursor:pointer;z-index:10000}
-@media (max-width:720px){.gallery img{height:220px}.hero h1{font-size:2rem}}
 
 /* Contact */
 .contact-container{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start}
@@ -125,23 +113,39 @@ section{padding:5rem 5%;max-width:1400px;margin:0 auto}
 .form-group input:focus,.form-group textarea:focus{outline:none;border-color:var(--dore)}
 .submit-btn{background:var(--dore);color:var(--anthracite);border:none;padding:12px 20px;border-radius:40px;font-weight:600;cursor:pointer}
 .submit-btn:hover{background:#d8b975}
-
-/* Map full width under contact blocks */
 .map-container{grid-column:1 / -1;margin-top:1.2rem;border-radius:10px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.08)}
 .map-container iframe{width:100%;height:420px;border:0}
 
 /* Footer */
 footer{background:var(--anthracite);color:var(--blanc-casse);padding:2.2rem 5%}
-.social-links{display:flex;gap:1rem;justify-content:center;margin-bottom:1rem}
+.social-links{display:flex;gap:1rem;justify-content:center;margin-bottom:1rem;flex-wrap:wrap}
 .social-links a{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:8px;background:transparent;color:var(--dore);text-decoration:none}
 .social-links a svg{width:20px;height:20px;display:block;fill:currentColor}
 .social-links a:hover{background:rgba(255,255,255,.06);color:#fff}
 
-/* animations */
+/* Animations */
 @keyframes fadeInUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 
-/* responsive */
-@media(max-width:980px){.about-content,.contact-container{grid-template-columns:1fr}.hero{height:70vh}}
+/* Responsive */
+@media(max-width:1200px){
+  .hero h1{font-size:2.8rem}
+}
+@media(max-width:980px){
+  .about-content,.contact-container{grid-template-columns:1fr}
+  .hero{height:70vh}
+  nav{justify-content:space-between;}
+}
+@media(max-width:720px){
+  .gallery img{height:220px}
+  .hero h1{font-size:2rem}
+  nav{padding:0.8rem 5%;}
+  .section-title{font-size:1.8rem}
+}
+@media(max-width:480px){
+  .hero h1{font-size:1.6rem;line-height:1.3}
+  section{padding:3rem 5%}
+  .submit-btn{width:100%;text-align:center}
+}
 </style>
 </head>
 <body>
@@ -159,7 +163,7 @@ footer{background:var(--anthracite);color:var(--blanc-casse);padding:2.2rem 5%}
   </nav>
 </header>
 
-<!-- HERO avec image de fond -->
+<!-- HERO -->
 <section class="hero" id="accueil">
   <div class="hero-overlay"></div>
   <div class="hero-content">
@@ -184,9 +188,7 @@ footer{background:var(--anthracite);color:var(--blanc-casse);padding:2.2rem 5%}
 <!-- RÉALISATIONS -->
 <section id="realisations">
   <h2 class="section-title">Nos réalisations</h2>
-
   <div class="gallery" aria-live="polite">
-    <!-- RENOMME TES IMAGES LOCALLY to these filenames and place in /images -->
     <img src="images/tv-entree-showroom.jpg" alt="Meuble TV sur mesure" data-caption="Meuble TV sur mesure — Showroom" />
     <img src="images/meuble-tv-cecile.jpg" alt="Meuble TV bibliothèque sur mesure" data-caption="Meuble TV bibliothèque — Cécile" />
     <img src="images/salon.jpg" alt="Salon contemporain" data-caption="Salon contemporain — Projet" />
@@ -203,23 +205,19 @@ footer{background:var(--anthracite);color:var(--blanc-casse);padding:2.2rem 5%}
 <!-- CONTACT -->
 <section id="contact">
   <h2 class="section-title">Contactez-nous</h2>
-
   <div class="contact-container">
     <div class="contact-info">
       <div class="info-item"><div class="info-icon">📍</div><div><h3>Adresse</h3><p>105 Route de Saint-Malo<br/>35520 La Chapelle-des-Fougeretz</p></div></div>
       <div class="info-item"><div class="info-icon">📞</div><div><h3>Téléphone</h3><p><a href="tel:+33246871093">02 46 87 10 93</a></p></div></div>
       <div class="info-item"><div class="info-icon">✉️</div><div><h3>Email</h3><p><a href="mailto:rennes@interieurs-prives.com">rennes@interieurs-prives.com</a></p></div></div>
     </div>
-
     <form class="contact-form" action="https://formspree.io/f/mblzzgny" method="POST" aria-label="Formulaire de contact">
       <div class="form-group"><label for="name">Nom</label><input id="name" name="name" type="text" required /></div>
       <div class="form-group"><label for="email">Email</label><input id="email" name="email" type="email" required /></div>
       <div class="form-group"><label for="message">Message</label><textarea id="message" name="message" rows="6" required></textarea></div>
       <button class="submit-btn" type="submit">Envoyer</button>
     </form>
-
     <div class="map-container" aria-hidden="false">
-      <!-- Google Maps embed (functionnel) -->
       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5319.516079850846!2d-1.7322446231771882!3d48.19201324736939!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x480ee7a4226336a5%3A0x3350fb9ad1aafdaa!2s105%20Rte%20de%20Saint-Malo%2C%2035520%20La%20Chapelle-des-Fougeretz!5e0!3m2!1sfr!2sfr!4v1760085107158!5m2!1sfr!2sfr"
       width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
@@ -229,15 +227,12 @@ footer{background:var(--anthracite);color:var(--blanc-casse);padding:2.2rem 5%}
 <!-- FOOTER -->
 <footer>
   <div class="social-links" aria-label="Réseaux sociaux">
-    <!-- Instagram -->
     <a href="https://www.instagram.com/interieursprivesrennes/" target="_blank" rel="noopener noreferrer" title="Instagram">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm5 6.5A4.5 4.5 0 1016.5 13 4.5 4.5 0 0012 8.5zm0 7.4A2.9 2.9 0 1114.9 13 2.9 2.9 0 0112 15.9zM18.6 6.4a1.06 1.06 0 11-1.06-1.06 1.06 1.06 0 011.06 1.06z"/></svg>
     </a>
-    <!-- Facebook -->
     <a href="https://www.facebook.com/interieursprivesrennes/" target="_blank" rel="noopener noreferrer" title="Facebook">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12.07C22 6.48 17.52 2 12 2S2 6.48 2 12.07c0 5 3.66 9.13 8.44 9.93v-7.03H7.9v-2.9h2.54V9.41c0-2.5 1.49-3.88 3.77-3.88 1.09 0 2.23.2 2.23.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.87h2.78l-.44 2.9h-2.34v7.03C18.34 21.2 22 17.07 22 12.07z"/></svg>
     </a>
-    <!-- Pinterest -->
     <a href="https://fr.pinterest.com/interieursprivesrennes/" target="_blank" rel="noopener noreferrer" title="Pinterest">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.5 2 2 6.5 2 12c0 3.2 1.6 6 4.1 7.7-.06-.65-.1-1.66.03-2.38.12-.65.8-4.16.8-4.16s-.2-.38-.2-.94c0-.87.5-1.52 1.12-1.52.53 0 .78.4.78.88 0 .53-.34 1.32-.52 2.06-.15.62.33 1.13.98 1.13 1.18 0 2.08-1.24 2.08-3.03 0-1.58-1.14-2.68-2.77-2.68-1.89 0-3.02 1.42-3.02 2.89 0 .57.22 1.18.49 1.51.05.06.06.11.05.17l-.19.7c-.06.23-.21.28-.36.17C6.1 13.28 5.6 11.21 5.6 9.82 5.6 6.76 8.05 4 12 4c2.9 0 4.96 1.88 4.96 4.38 0 2.96-1.37 5.07-3.4 5.07-.9 0-1.75-.47-2.04-1.02 0 0-.48 1.83-.58 2.28-.16.6-.6 1.21-.9 1.68C9.7 18.9 10.82 19 12 19c5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
     </a>
@@ -245,9 +240,8 @@ footer{background:var(--anthracite);color:var(--blanc-casse);padding:2.2rem 5%}
   <p style="text-align:center;color:var(--gris-clair)">© Intérieurs Privés Rennes — Tous droits réservés</p>
 </footer>
 
-<!-- LIGHTBOX SCRIPT -->
+<!-- LIGHTBOX -->
 <script>
-/* Lightbox: ouverture, fermeture (click, esc), caption */
 (function(){
   const gallery = document.querySelectorAll('.gallery img');
   const lightbox = document.createElement('div');
