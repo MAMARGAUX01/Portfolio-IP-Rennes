@@ -16,16 +16,19 @@
   --blanc-casse:#F8F8F8;
   --dore:#C6A664;
   --gris-clair:#E5E5E5;
+  --transp-black-60: rgba(0,0,0,0.6);
 }
 
 /* Reset & Base */
 *{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
 body{
   font-family:'Poppins',sans-serif;
   background:var(--blanc-casse);
   color:var(--anthracite);
   line-height:1.6;
   -webkit-font-smoothing:antialiased;
+  -webkit-font-size-adjust:none;
 }
 
 /* Header */
@@ -41,72 +44,46 @@ header{
   justify-content: space-between;
   align-items: center;
   padding: 1rem 5%;
-  transition: background 0.3s;
+  transition: background 0.25s;
 }
-
-header:hover { background: rgba(26,26,26,1); }
-
 .logo {
   font-family: 'Lora', serif;
   color: var(--dore);
   font-weight: 600;
-  font-size: 1.4rem;
+  font-size: 1.25rem;
+  letter-spacing: .2px;
 }
 
-/* Nav desktop */
-.main-nav ul {
-  display: flex;
-  gap: 2rem;
-  list-style: none;
-}
+/* Nav */
+.main-nav { display:block; }
+.main-nav ul { display:flex; gap:1.6rem; list-style:none; align-items:center; }
+.main-nav a { color:var(--blanc-casse); text-decoration:none; padding:6px 0; position:relative; transition: color .25s; }
+.main-nav a::after{ content:""; position:absolute; left:0; bottom:-8px; width:0; height:2px; background:var(--dore); transition:width .25s; }
+.main-nav a:hover{ color:var(--dore); }
+.main-nav a:hover::after{ width:100%; }
 
-.nav-links a {
-  color: var(--blanc-casse);
-  text-decoration: none;
-  position: relative;
-  padding: 6px 0;
-  transition: color 0.3s;
-}
-
-.nav-links a::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -6px;
-  width: 0;
-  height: 2px;
-  background: var(--dore);
-  transition: width 0.3s;
-}
-
-.nav-links a:hover {
-  color: var(--dore);
-}
-
-.nav-links a:hover::after {
-  width: 100%;
-}
-
-/* Burger menu */
+/* Burger (mobile only) */
 .burger {
-  display: none;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 28px;
-  height: 22px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
+  display:none;
+  border:0;
+  background:transparent;
+  width:34px;
+  height:24px;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
 }
-
-.burger span {
-  display: block;
-  height: 3px;
-  width: 100%;
-  background: var(--blanc-casse);
-  border-radius: 3px;
-  transition: all 0.3s ease;
+.burger span{
+  display:block;
+  height:3px;
+  width:100%;
+  background:var(--blanc-casse);
+  border-radius:3px;
+  transition: transform .3s, opacity .3s;
 }
+.burger.active span:nth-child(1){ transform: translateY(8px) rotate(45deg); }
+.burger.active span:nth-child(2){ opacity:0; }
+.burger.active span:nth-child(3){ transform: translateY(-8px) rotate(-45deg); }
 
 /* HERO */
 .hero {
@@ -120,229 +97,159 @@ header:hover { background: rgba(26,26,26,1); }
   justify-content: center;
   text-align: center;
   color: #fff;
-  overflow: hidden;
+  margin-top:64px; /* avoid content under fixed header on small screens */
 }
-
-.hero-overlay {
-  position: absolute;
-  top:0; left:0;
-  width:100%; height:100%;
-  background: rgba(0,0,0,0.45);
-  z-index:1;
-}
-
-.hero-content{
-  position: relative;
-  z-index:2;
-  max-width:800px;
-  padding:2rem;
-  animation: fadeInUp 1.2s ease forwards;
-}
-
-.hero h1{
-  font-size:3rem;
-  color:#d4af37;
-  margin-bottom:1.5rem;
-  letter-spacing:2px;
-  text-shadow:0 4px 20px rgba(0,0,0,0.4);
-  line-height:1.2;
-}
+.hero-overlay { position:absolute; inset:0; background:rgba(0,0,0,0.45); z-index:1; }
+.hero-content{ position:relative; z-index:2; max-width:900px; padding:2rem; animation: fadeInUp .9s ease both; }
+.hero h1{ font-size:3rem; color: #d4af37; letter-spacing:2px; text-shadow:0 6px 24px rgba(0,0,0,.45); line-height:1.05; }
 
 /* Animation */
-@keyframes fadeInUp {
-  from {opacity:0; transform: translateY(40px);}
-  to {opacity:1; transform: translateY(0);}
-}
+@keyframes fadeInUp { from{opacity:0; transform:translateY(30px)} to{opacity:1; transform:none} }
 
 /* Sections */
-section{padding:5rem 5%;max-width:1400px;margin:0 auto}
-
-.section-title{
-  text-align:center;
-  font-size:2.2rem;
-  margin-bottom:2.5rem;
-  color:var(--anthracite);
-  position:relative;
-}
-
-.section-title::after{
-  content:'';
-  position:absolute;
-  bottom:-10px;
-  left:50%;
-  transform:translateX(-50%);
-  width:80px;
-  height:3px;
-  background:var(--dore);
-}
+main{ padding-top:1rem }
+section{ padding:5rem 5%; max-width:1400px; margin:0 auto }
+.section-title{ text-align:center; font-size:2.2rem; margin-bottom:2.5rem; position:relative; color:var(--anthracite) }
+.section-title::after{ content:''; position:absolute; bottom:-10px; left:50%; transform:translateX(-50%); width:80px; height:3px; background:var(--dore) }
 
 /* About */
-.about-content{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:2.5rem;
-  align-items:center;
-}
+.about-content{ display:grid; grid-template-columns:1fr 1fr; gap:2.5rem; align-items:center }
+.about-image img{ width:100%; border-radius:10px; display:block; box-shadow:0 10px 30px rgba(0,0,0,.12) }
 
-.about-text p{
-  color:#333;
-  font-size:1.02rem;
-  line-height:1.85;
-  margin-bottom:1rem;
-}
-
-.about-image img{
-  width:100%;
-  border-radius:10px;
-  display:block;
-  box-shadow:0 10px 30px rgba(0,0,0,.15);
-  transition: transform 0.3s ease;
-}
-
-.about-image img:hover{
-  transform: scale(1.02);
-}
-
-/* ----- GALLERY LAYOUT ----- */
+/* Gallery (desktop grid, mobile horizontal stack with vertical photos) */
 .gallery {
-  display: grid;
+  display:grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1rem;
-  margin-top: 2rem;
+  gap:1rem;
+  margin-top:1rem;
 }
 
+/* Each item wrapper */
 .gallery-item {
-  position: relative;
-  border-radius: 12px;
-  overflow: hidden;
+  position:relative;
+  border-radius:12px;
+  overflow:hidden;
+  background: #fff;
 }
 
+/* Images vertical-first: keep taller aspect on small screens but responsive */
 .gallery-item img {
-  width: 100%;
-  height: 320px;
-  object-fit: cover;
-  cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display:block;
+  width:100%;
+  height:420px;               /* desktop default vertical look */
+  object-fit:cover;
+  cursor:pointer;
+  transition: transform .35s ease, box-shadow .35s ease;
 }
 
-.gallery-item:hover img {
-  transform: scale(1.04);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-}
+/* hover look */
+.gallery-item:hover img { transform: scale(1.03); box-shadow:0 18px 40px rgba(0,0,0,.18); }
 
-/* ----- CAPTION OVERLAY (Desktop) ----- */
+/* Caption overlay (desktop behavior: appear on hover; also shown when .active) */
 .caption-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: rgba(0,0,0,0.6);
-  color: #fff;
-  font-size: 0.95rem;
-  padding: 0.6rem;
-  text-align: center;
-  opacity: 0;
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  padding:.6rem .8rem;
+  background: var(--transp-black-60);
+  color:#fff;
+  font-size:0.95rem;
+  text-align:center;
   transform: translateY(10px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  pointer-events: none;
+  opacity:0;
+  transition: opacity .28s ease, transform .28s ease;
+  pointer-events:none;
 }
-
-.gallery-item:hover .caption-overlay {
-  opacity: 1;
+.gallery-item:hover .caption-overlay,
+.gallery-item.active .caption-overlay {
+  opacity:1;
   transform: translateY(0);
 }
 
-/* ----- MOBILE LAYOUT ----- */
-@media (max-width: 720px) {
-  .gallery {
-    display: flex;
-    overflow-x: auto;
-    gap: 1rem;
-    padding-bottom: 0.5rem;
-    scroll-behavior: smooth;
-  }
-
-  .gallery-item {
-    flex: 0 0 auto;
-    width: 80%;
-  }
-
-  .gallery-item img {
-    height: 260px;
-    border-radius: 12px;
-  }
-
-  .caption-overlay {
-    opacity: 1;
-    font-size: 0.9rem;
-    background: rgba(0,0,0,0.5);
-  }
-}
-
-/* ----- LIGHTBOX ----- */
+/* Lightbox styling */
 .lightbox {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.92);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
-  visibility: hidden;
-  opacity: 0;
-  transition: opacity 0.25s ease;
-  z-index: 9999;
+  position:fixed;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(0,0,0,.92);
+  padding:1.6rem;
+  visibility:hidden;
+  opacity:0;
+  transition:opacity .22s ease;
+  z-index:9999;
+}
+.lightbox.active { visibility:visible; opacity:1; }
+.lightbox .lb-inner { max-width:1100px; width:100%; text-align:center; }
+.lightbox img { max-width:100%; max-height:80vh; border-radius:10px; box-shadow:0 30px 80px rgba(0,0,0,.6); }
+.lightbox .caption { color:#fff; margin-top:0.8rem; font-size:1rem; }
+.lightbox-close { position:absolute; top:20px; right:22px; color:var(--dore); font-size:2.2rem; background:transparent; border:0; cursor:pointer; }
+
+/* Contact / Form / Map (kept simple & consistent) */
+.contact-container{ display:grid; grid-template-columns:1fr 1fr; gap:2rem; align-items:start }
+.contact-info .info-item{ display:flex; gap:.8rem; align-items:flex-start }
+.info-icon{ font-size:1.3rem; color:var(--dore) }
+.form-group input, .form-group textarea{ width:100%; padding:12px; border:2px solid var(--gris-clair); border-radius:8px }
+.submit-btn{ background:var(--dore); color:var(--anthracite); padding:12px 20px; border-radius:40px; border:0; font-weight:600; cursor:pointer }
+
+/* Footer */
+footer{ background:var(--anthracite); color:var(--blanc-casse); padding:2.2rem 5% }
+.social-links{ display:flex; gap:1rem; justify-content:center; margin-bottom:1rem; }
+.social-links a{ width:40px; height:40px; display:inline-flex; align-items:center; justify-content:center; border-radius:8px; color:var(--dore); text-decoration:none }
+
+/* RESPONSIVE ADJUSTMENTS */
+
+/* Narrow screens: menu burger, mobile gallery becomes horizontal stack (vertical photos) */
+@media (max-width: 992px){
+  .about-content, .contact-container{ grid-template-columns: 1fr; }
+  header{ padding: .9rem 4% }
+}
+@media (max-width: 768px){
+  .main-nav { position:absolute; top:100%; left:0; width:100%; background: rgba(26,26,26,0.98); max-height:0; overflow:hidden; transition:max-height .28s ease; }
+  .main-nav.open { max-height:360px; }
+  .main-nav ul{ flex-direction:column; padding:1rem 2rem; gap:1rem; }
+  .burger { display:flex; gap:6px; align-items:center }
+  .gallery {
+    display:flex;
+    flex-direction:row;            /* horizontal flow container */
+    gap:1rem;
+    overflow-x:auto;
+    padding-bottom: 1rem;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory; /* snap behavior */
+  }
+  .gallery-item {
+    flex:0 0 70%;                  /* visible "card" width */
+    min-width: 70%;
+    scroll-snap-align: center;
+    width:auto;
+  }
+  /* Make photos vertical/tall on mobile for that editorial look */
+  .gallery-item img { height: 62vh; border-radius:12px; }
+  .caption-overlay { opacity:1; background: rgba(0,0,0,0.46); font-size:0.95rem; pointer-events:auto; }
 }
 
-.lightbox.active {
-  visibility: visible;
-  opacity: 1;
+/* Tiny screens */
+@media (max-width:420px){
+  .gallery-item { flex:0 0 84%; min-width:84% }
+  .gallery-item img { height:68vh }
+  .hero h1 { font-size:1.6rem }
 }
 
-.lightbox img {
-  max-width: 90%;
-  max-height: 80%;
-  border-radius: 10px;
-  box-shadow: 0 30px 80px rgba(0,0,0,0.6);
-}
-
-.lightbox .caption {
-  color: #fff;
-  margin-top: 1rem;
-  text-align: center;
-  font-size: 1rem;
-}
-
-.lightbox-close {
-  position: absolute;
-  top: 24px;
-  right: 28px;
-  color: var(--dore);
-  font-size: 2rem;
-  cursor: pointer;
-  z-index: 10000;
-}
-
-/* Responsive */
-@media(max-width:980px){
-  .about-content,.contact-container{grid-template-columns:1fr}
-  .hero{height:70vh}
-}
-
-/* Hero text */
-@media(max-width:720px){
-  .hero h1{font-size:2rem;line-height:1.2;}
-  .section-title{font-size:1.8rem;}
-}
+/* Accessibility focus styles */
+.gallery-item img:focus { outline: 3px solid rgba(198,166,100,0.25); outline-offset:3px; }
+a:focus, button:focus { outline: 2px solid rgba(198,166,100,0.25); outline-offset:2px; }
 </style>
 </head>
-
 <body>
 
 <!-- HEADER -->
 <header>
   <div class="logo">Intérieurs Privés Rennes</div>
-  <nav class="main-nav">
+
+  <nav class="main-nav" aria-label="Navigation principale">
     <ul class="nav-links">
       <li><a href="#accueil">Accueil</a></li>
       <li><a href="#a-propos">À propos</a></li>
@@ -350,105 +257,263 @@ section{padding:5rem 5%;max-width:1400px;margin:0 auto}
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
-  <button class="burger" aria-label="Menu">
+
+  <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
 </header>
 
-<!-- HERO -->
-<section class="hero" id="accueil">
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <h1>Créateur d’intérieurs sur mesure</h1>
-  </div>
-</section>
-
-<!-- À PROPOS -->
-<section id="a-propos">
-  <h2 class="section-title">Intérieurs Privés Rennes</h2>
-  <div class="about-content">
-    <div class="about-text">
-      <p>Chez Intérieurs Privés Rennes, nous transformons vos envies en espaces uniques et fonctionnels. Notre expertise repose sur un savoir-faire français sur mesure, alliant créativité, précision et qualité de réalisation.</p>
-      <p>Chaque projet est accompagné par nos chargées de projet, qui vous guident de la conception à la réception, en veillant à ce que chaque détail réponde parfaitement à vos besoins et à vos goûts.</p>
+<main>
+  <!-- HERO -->
+  <section class="hero" id="accueil" aria-label="Présentation">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>Créateur d’intérieurs sur mesure</h1>
     </div>
-    <div class="about-image">
-      <img src="images/a-propos-rennes.jpg" alt="Intérieurs Privés Rennes - savoir-faire sur mesure" />
+  </section>
+
+  <!-- À PROPOS -->
+  <section id="a-propos" aria-labelledby="title-a-propos">
+    <h2 id="title-a-propos" class="section-title">Intérieurs Privés Rennes</h2>
+    <div class="about-content">
+      <div class="about-text">
+        <p>Chez <strong>Intérieurs Privés Rennes</strong>, nous transformons vos envies en espaces uniques et fonctionnels. Notre expertise repose sur un savoir-faire français sur mesure, alliant créativité, précision et qualité de réalisation.</p>
+        <p>Chaque projet est accompagné par nos <strong>chargées de projet</strong>, qui vous guident de la <strong>conception à la réception</strong>. Notre équipe de <strong>poseurs qualifiés</strong> prend en charge l’ensemble des travaux pour garantir un résultat clé en main.</p>
+      </div>
+      <div class="about-image">
+        <img src="images/a-propos-rennes.jpg" alt="Intérieurs Privés Rennes - savoir-faire sur mesure">
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- RÉALISATIONS -->
-<section id="realisations">
-  <h2 class="section-title">Nos réalisations</h2>
-  <div class="gallery">
-    <div class="gallery-item">
-      <img src="images/tv-entree-showroom.jpg" alt="Meuble TV sur mesure" data-caption="Meuble TV sur mesure — Showroom" />
-      <div class="caption-overlay">Meuble TV sur mesure — Showroom</div>
+  <!-- RÉALISATIONS -->
+  <section id="realisations" aria-labelledby="title-realisations">
+    <h2 id="title-realisations" class="section-title">Nos réalisations</h2>
+
+    <div class="gallery" aria-live="polite">
+      <!-- Each item: image + caption-overlay. Keep data-caption for lightbox -->
+      <div class="gallery-item">
+        <img src="images/tv-entree-showroom.jpg" alt="Meuble TV sur mesure" data-caption="Meuble TV sur mesure, élégant et fonctionnel — Showroom La Route du Meuble" tabindex="0">
+        <div class="caption-overlay">Meuble TV sur mesure — Showroom La Route du Meuble</div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="images/meuble-tv-cecile.jpg" alt="Meuble TV bibliothèque sur mesure" data-caption="Bibliothèque et meuble TV sur mesure, conçu pour optimiser l'espace — Projet Cécile" tabindex="0">
+        <div class="caption-overlay">Bibliothèque & meuble TV sur mesure — Projet Cécile</div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="images/salon.jpg" alt="Salon contemporain" data-caption="Salon contemporain au design épuré, mêlant confort et esthétisme — Projet" tabindex="0">
+        <div class="caption-overlay">Salon contemporain — Projet</div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="images/tv-biblio-showroom.jpg" alt="Meuble TV et bibliothèque" data-caption="Meuble TV & bibliothèque — Showroom" tabindex="0">
+        <div class="caption-overlay">Meuble TV & bibliothèque — Showroom</div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="images/tete-de-lit-showroom.jpg" alt="Tête de lit sur mesure" data-caption="Tête de lit sur mesure, un point focal élégant pour la chambre — Showroom" tabindex="0">
+        <div class="caption-overlay">Tête de lit sur mesure — Showroom</div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="images/tete-de-lit-emma.jpg" alt="Tête de lit toute hauteur" data-caption="Tête de lit toute hauteur, finition personnalisée — Projet Emma" tabindex="0">
+        <div class="caption-overlay">Tête de lit toute hauteur — Projet Emma</div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="images/salon-mauranne.jpg" alt="Salon sur mesure" data-caption="Salon sur mesure, conçu pour refléter le style et les besoins du client — Projet Mauranne" tabindex="0">
+        <div class="caption-overlay">Salon sur mesure — Projet Mauranne</div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="images/salon-margaux.jpg" alt="Salon moderne" data-caption="Salon moderne et chaleureux, alliant confort et lignes contemporaines — Projet Margaux" tabindex="0">
+        <div class="caption-overlay">Salon moderne — Projet Margaux</div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="images/salon-emma.jpg" alt="Salon moderne" data-caption="Salon moderne sur mesure, mobilier et agencement personnalisés — Projet Emma" tabindex="0">
+        <div class="caption-overlay">Salon moderne — Projet Emma</div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="images/bibliotheque-arrondie.jpg" alt="Bibliothèque arrondie" data-caption="Bibliothèque arrondie en bois clair, pièce unique alliant design et praticité — Projet" tabindex="0">
+        <div class="caption-overlay">Bibliothèque arrondie — Projet</div>
+      </div>
     </div>
-    <div class="gallery-item">
-      <img src="images/meuble-tv-cecile.jpg" alt="Bibliothèque TV sur mesure" data-caption="Bibliothèque TV sur mesure — Projet Cécile" />
-      <div class="caption-overlay">Bibliothèque TV sur mesure — Projet Cécile</div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" aria-labelledby="title-contact">
+    <h2 id="title-contact" class="section-title">Contactez-nous</h2>
+    <div class="contact-container">
+      <div class="contact-info">
+        <div class="info-item"><div class="info-icon">📍</div><div><h3>Adresse</h3><p>105 Route de Saint-Malo<br/>35520 La Chapelle-des-Fougeretz</p></div></div>
+        <div class="info-item"><div class="info-icon">📞</div><div><h3>Téléphone</h3><p><a href="tel:+33246871093">02 46 87 10 93</a></p></div></div>
+        <div class="info-item"><div class="info-icon">✉️</div><div><h3>Email</h3><p><a href="mailto:rennes@interieurs-prives.com">rennes@interieurs-prives.com</a></p></div></div>
+      </div>
+
+      <form class="contact-form" action="https://formspree.io/f/mblzzgny" method="POST" aria-label="Formulaire de contact">
+        <div class="form-group"><label for="name">Nom</label><input id="name" name="name" type="text" required /></div>
+        <div class="form-group"><label for="email">Email</label><input id="email" name="email" type="email" required /></div>
+        <div class="form-group"><label for="message">Message</label><textarea id="message" name="message" rows="6" required></textarea></div>
+        <button class="submit-btn" type="submit">Envoyer</button>
+      </form>
+
+      <div class="map-container" style="grid-column:1 / -1; margin-top:1.2rem; border-radius:10px; overflow:hidden; box-shadow:0 8px 30px rgba(0,0,0,.08);">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5319.516079850846!2d-1.7322446231771882!3d48.19201324736939!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x480ee7a4226336a5%3A0x3350fb9ad1aafdaa!2s105%20Rte%20de%20Saint-Malo%2C%2035520%20La%20Chapelle-des-Fougeretz!5e0!3m2!1sfr!2sfr!4v1760085107158!5m2!1sfr!2sfr" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
     </div>
-    <div class="gallery-item">
-      <img src="images/salon.jpg" alt="Salon contemporain" data-caption="Salon contemporain — Projet Emma" />
-      <div class="caption-overlay">Salon contemporain — Projet Emma</div>
-    </div>
-    <div class="gallery-item">
-      <img src="images/salon-margaux.jpg" alt="Salon moderne" data-caption="Salon moderne — Projet Margaux" />
-      <div class="caption-overlay">Salon moderne — Projet Margaux</div>
-    </div>
-    <div class="gallery-item">
-      <img src="images/tete-de-lit-showroom.jpg" alt="Tête de lit sur mesure" data-caption="Tête de lit sur mesure — Showroom" />
-      <div class="caption-overlay">Tête de lit sur mesure — Showroom</div>
-    </div>
-  </div>
-</section>
-
-<!-- LIGHTBOX -->
-<script>
-(function(){
-  const gallery = document.querySelectorAll('.gallery-item img');
-  const lightbox = document.createElement('div');
-  lightbox.className = 'lightbox';
-  lightbox.innerHTML = '<button class="lightbox-close" aria-label="Fermer">×</button><div role="dialog" aria-modal="true"><img alt=""><div class="caption"></div></div>';
-  document.body.appendChild(lightbox);
-
-  const lbImg = lightbox.querySelector('img');
-  const lbCaption = lightbox.querySelector('.caption');
-  const closeBtn = lightbox.querySelector('.lightbox-close');
-
-  function open(img){
-    lbImg.src = img.src;
-    lbImg.alt = img.alt || '';
-    lbCaption.textContent = img.dataset.caption || img.alt || '';
-    lightbox.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function close(){
-    lightbox.classList.remove('active');
-    document.body.style.overflow = '';
-  }
-
-  gallery.forEach(img => img.addEventListener('click', () => open(img)));
-  closeBtn.addEventListener('click', close);
-  lightbox.addEventListener('click', e => { if(e.target === lightbox) close(); });
-  document.addEventListener('keydown', e => { if(e.key === 'Escape' && lightbox.classList.contains('active')) close(); });
-
-  // Menu burger
-  const burger = document.querySelector('.burger');
-  const nav = document.querySelector('.main-nav');
-  burger.addEventListener('click', () => {
-    nav.classList.toggle('open');
-    burger.classList.toggle('active');
-  });
-})();
-</script>
+  </section>
+</main>
 
 <!-- FOOTER -->
 <footer>
+  <div class="social-links" aria-label="Réseaux sociaux" style="margin-bottom:1rem">
+    <a href="https://www.instagram.com/interieursprivesrennes/" target="_blank" rel="noopener noreferrer" title="Instagram">
+      <svg viewBox="0 0 24 24" aria-hidden="true" width="20" height="20"><path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm5 6.5A4.5 4.5 0 1016.5 13 4.5 4.5 0 0012 8.5zm0 7.4A2.9 2.9 0 1114.9 13 2.9 2.9 0 0112 15.9zM18.6 6.4a1.06 1.06 0 11-1.06-1.06 1.06 1.06 0 011.06 1.06z"/></svg>
+    </a>
+    <a href="https://www.facebook.com/interieursprivesrennes/" target="_blank" rel="noopener noreferrer" title="Facebook">
+      <svg viewBox="0 0 24 24" aria-hidden="true" width="20" height="20"><path d="M22 12.07C22 6.48 17.52 2 12 2S2 6.48 2 12.07c0 5 3.66 9.13 8.44 9.93v-7.03H7.9v-2.9h2.54V9.41c0-2.5 1.49-3.88 3.77-3.88 1.09 0 2.23.2 2.23.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.87h2.78l-.44 2.9h-2.34v7.03C18.34 21.2 22 17.07 22 12.07z"/></svg>
+    </a>
+    <a href="https://fr.pinterest.com/interieursprivesrennes/" target="_blank" rel="noopener noreferrer" title="Pinterest">
+      <svg viewBox="0 0 24 24" aria-hidden="true" width="20" height="20"><path d="M12 2C6.5 2 2 6.5 2 12c0 3.2 1.6 6 4.1 7.7-.06-.65-.1-1.66.03-2.38.12-.65.8-4.16.8-4.16s-.2-.38-.2-.94c0-.87.5-1.52 1.12-1.52.53 0 .78.4.78.88 0 .53-.34 1.32-.52 2.06-.15.62.33 1.13.98 1.13 1.18 0 2.08-1.24 2.08-3.03 0-1.58-1.14-2.68-2.77-2.68-1.89 0-3.02 1.42-3.02 2.89 0 .57.22 1.18.49 1.51.05.06.06.11.05.17l-.19.7c-.06.23-.21.28-.36.17C6.1 13.28 5.6 11.21 5.6 9.82 5.6 6.76 8.05 4 12 4c2.9 0 4.96 1.88 4.96 4.38 0 2.96-1.37 5.07-3.4 5.07-.9 0-1.75-.47-2.04-1.02 0 0-.48 1.83-.58 2.28-.16.6-.6 1.21-.9 1.68C9.7 18.9 10.82 19 12 19c5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+    </a>
+  </div>
   <p style="text-align:center;color:var(--gris-clair)">© Intérieurs Privés Rennes — Tous droits réservés</p>
 </footer>
 
+<!-- SINGLE LIGHTBOX + INTERACTIONS + BURGER -->
+<script>
+(function(){
+  /* Elements */
+  const galleryItems = Array.from(document.querySelectorAll('.gallery-item'));
+  const burger = document.querySelector('.burger');
+  const nav = document.querySelector('.main-nav');
+
+  /* Burger toggling (mobile only) */
+  if (burger && nav) {
+    burger.addEventListener('click', () => {
+      const expanded = burger.getAttribute('aria-expanded') === 'true';
+      burger.setAttribute('aria-expanded', String(!expanded));
+      burger.classList.toggle('active');
+      nav.classList.toggle('open');
+    });
+  }
+
+  /* Build a single lightbox node */
+  const lightbox = document.createElement('div');
+  lightbox.className = 'lightbox';
+  lightbox.setAttribute('role','dialog');
+  lightbox.setAttribute('aria-modal','true');
+  lightbox.setAttribute('aria-hidden','true');
+  lightbox.innerHTML = `
+    <button class="lightbox-close" aria-label="Fermer">&times;</button>
+    <div class="lb-inner" tabindex="0">
+      <img src="" alt="">
+      <div class="caption" aria-live="polite"></div>
+    </div>
+  `;
+  document.body.appendChild(lightbox);
+
+  const lbClose = lightbox.querySelector('.lightbox-close');
+  const lbImg = lightbox.querySelector('img');
+  const lbCaption = lightbox.querySelector('.caption');
+  const lbInner = lightbox.querySelector('.lb-inner');
+
+  /* Helpers */
+  function openLightboxFromImg(imgEl){
+    if(!imgEl) return;
+    lbImg.src = imgEl.src;
+    lbImg.alt = imgEl.alt || '';
+    lbCaption.textContent = imgEl.dataset.caption || imgEl.alt || '';
+    lightbox.classList.add('active');
+    lightbox.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+    // focus inside for accessibility
+    setTimeout(()=> lbInner.focus(), 150);
+  }
+  function closeLightbox(){
+    lightbox.classList.remove('active');
+    lightbox.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+  }
+
+  /* Desktop: show caption on hover (CSS) and also when item clicked keep caption visible (class .active).
+     Click will also open the lightbox. On mobile captions are always visible via CSS. */
+  galleryItems.forEach(item => {
+    const img = item.querySelector('img');
+
+    // keyboard accessibility: Enter opens lightbox and toggles active caption
+    img.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        // set active caption on desktop widths
+        if (window.innerWidth > 720) {
+          galleryItems.forEach(i => i.classList.remove('active'));
+          item.classList.add('active');
+        }
+        openLightboxFromImg(img);
+      }
+    });
+
+    // Click behavior: toggle .active caption (desktop) + open lightbox
+    img.addEventListener('click', (e) => {
+      if (window.innerWidth > 720) {
+        // manage active class for captions on desktop
+        galleryItems.forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+      }
+      openLightboxFromImg(img);
+    });
+  });
+
+  // Close actions
+  lbClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && lightbox.classList.contains('active')) closeLightbox();
+    // left/right navigation in lightbox (desktop)
+    if (lightbox.classList.contains('active') && (e.key === 'ArrowRight' || e.key === 'ArrowLeft')) {
+      const currentIndex = galleryItems.findIndex(it => it.querySelector('img').src === lbImg.src);
+      if (currentIndex !== -1) {
+        let nextIndex = currentIndex;
+        if (e.key === 'ArrowRight') nextIndex = (currentIndex + 1) % galleryItems.length;
+        if (e.key === 'ArrowLeft') nextIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
+        const nextImg = galleryItems[nextIndex].querySelector('img');
+        openLightboxFromImg(nextImg);
+      }
+    }
+  });
+
+  // Optional: support swipe on touch to navigate lightbox images
+  (function addTouchNav(){
+    let startX = 0;
+    let endX = 0;
+    let threshold = 50; // px
+    lbInner.addEventListener('touchstart', (e)=> { startX = e.touches[0].clientX });
+    lbInner.addEventListener('touchmove', (e)=> { endX = e.touches[0].clientX });
+    lbInner.addEventListener('touchend', ()=>{
+      const diff = endX - startX;
+      if(Math.abs(diff) > threshold){
+        const currentIndex = galleryItems.findIndex(it => it.querySelector('img').src === lbImg.src);
+        if (currentIndex !== -1) {
+          if (diff < 0) { // swipe left -> next
+            const nextIndex = (currentIndex + 1) % galleryItems.length;
+            openLightboxFromImg(galleryItems[nextIndex].querySelector('img'));
+          } else { // swipe right -> prev
+            const prevIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
+            openLightboxFromImg(galleryItems[prevIndex].querySelector('img'));
+          }
+        }
+      }
+      startX = endX = 0;
+    });
+  })();
+
+})();
+</script>
 </body>
 </html>
