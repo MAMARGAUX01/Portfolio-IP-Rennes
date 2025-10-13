@@ -122,19 +122,18 @@ footer{background:var(--anthracite);color:var(--blanc-casse);padding:2.2rem 5%}
   </nav>
 </header>
 
-<!-- HERO -->
-<section class="hero" id="accueil" aria-label="Bannière d'accueil">
-  <!-- video : placer files dans /videos -->
-  <video class="hero-video" autoplay muted loop playsinline poster="images/hero-poster.jpg">
-    <source src="videos/hero-video.webm" type="video/webm" />
-    <source src="videos/hero-video.mp4" type="video/mp4" />
-    <!-- si pas de vidéo, un poster ou fond de secours apparait -->
+<!-- HERO avec vidéo -->
+<section class="hero" id="accueil">
+  <video autoplay muted loop playsinline class="hero-video" poster="images/hero-poster.jpg">
+    <source src="videos/hero-background.mp4" type="video/mp4">
+    <!-- Message de secours si la vidéo ne charge pas -->
+    Votre navigateur ne supporte pas la lecture vidéo.
   </video>
-  <div class="hero-overlay" aria-hidden="true"></div>
+
+  <div class="hero-overlay"></div>
 
   <div class="hero-content">
     <h1>Créateur d’intérieurs sur mesure</h1>
-    <p style="display:none">Design d'intérieur alliant élégance, confort et fonctionnalité</p>
   </div>
 </section>
 
