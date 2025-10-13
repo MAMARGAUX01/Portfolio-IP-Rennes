@@ -49,21 +49,23 @@ nav{
 .hero {
   position: relative;
   height: 100vh;
+  background-image: url('images/hero-poster.jpg'); /* <-- chemin exact vers ton image */
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
   background-attachment: fixed;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  color: var(--blanc-casse);
+  color: #fff;
 }
 
 .hero-overlay {
   position: absolute;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  background: rgba(26, 26, 26, 0.45);
+  background: rgba(0, 0, 0, 0.45);
   z-index: 1;
 }
 
@@ -77,10 +79,16 @@ nav{
 
 .hero h1 {
   font-size: 3rem;
-  color: var(--dore);
+  color: #d4af37;
   margin-bottom: 1.5rem;
   letter-spacing: 2px;
   text-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+
+/* Animation douce à l’apparition du texte */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* Sections */
@@ -152,7 +160,7 @@ footer{background:var(--anthracite);color:var(--blanc-casse);padding:2.2rem 5%}
 </header>
 
 <!-- HERO avec image de fond -->
-<section class="hero" id="accueil" style="background-image: url('images/hero-poster.jpg');">
+<section class="hero" id="accueil">
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <h1>Créateur d’intérieurs sur mesure</h1>
