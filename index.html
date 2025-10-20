@@ -1,366 +1,356 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Intérieurs Privés Rennes — Créateur d'intérieurs sur mesure</title>
 
-<!-- Google Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Lora:wght@400;600&display=swap" rel="stylesheet" />
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Lora:wght@500&display=swap" rel="stylesheet" />
 
 <style>
-:root{
-  --anthracite:#1A1A1A;
-  --blanc-casse:#F8F8F8;
-  --dore:#C6A664;
-  --gris-clair:#E5E5E5;
+:root {
+  --anthracite: #1a1a1a;
+  --blanc-casse: #f9f9f9;
+  --dore: #c8a56b;
+  --gris: #ddd;
 }
 
-/* Reset & Base */
-*{box-sizing:border-box;margin:0;padding:0}
-body{
-  font-family:'Poppins',sans-serif;
-  background:var(--blanc-casse);
-  color:var(--anthracite);
-  line-height:1.6;
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--blanc-casse);
+  color: var(--anthracite);
 }
 
-/* Header */
-header{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  background: rgba(26,26,26,0.95);
-  backdrop-filter: blur(8px);
-  z-index:1100;
+/* HEADER */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(26,26,26,0.9);
+  backdrop-filter: blur(6px);
+  color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 5%;
-  transition: background 0.3s;
+  z-index: 10;
 }
-header:hover { background: rgba(26,26,26,1); }
-
-.logo {
+header .logo {
   font-family: 'Lora', serif;
+  font-size: 1.5rem;
   color: var(--dore);
   font-weight: 600;
-  font-size: 1.4rem;
 }
-
-/* Nav desktop */
-.main-nav ul {
+nav ul {
   display: flex;
   gap: 2rem;
   list-style: none;
 }
-
-.nav-links a {
-  color: var(--blanc-casse);
+nav a {
+  color: white;
   text-decoration: none;
   position: relative;
-  padding: 6px 0;
-  transition: color 0.3s;
 }
-.nav-links a::after {
-  content: '';
+nav a::after {
+  content: "";
   position: absolute;
+  bottom: -4px;
   left: 0;
-  bottom: -6px;
-  width: 0;
+  width: 0%;
   height: 2px;
   background: var(--dore);
   transition: width 0.3s;
 }
-.nav-links a:hover {
-  color: var(--dore);
-}
-.nav-links a:hover::after {
+nav a:hover::after {
   width: 100%;
-}
-
-/* Burger menu */
-.burger {
-  display: none;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 28px;
-  height: 22px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-}
-.burger span {
-  display: block;
-  height: 3px;
-  width: 100%;
-  background: var(--blanc-casse);
-  border-radius: 3px;
 }
 
 /* HERO */
 .hero {
-  position: relative;
   height: 100vh;
-  background: url('images/hero-poster.jpg') center/cover no-repeat;
+  width: 100vw;
+  background: url('images/hero-poster.jpg') center center/cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  color: #fff;
+  position: relative;
   overflow: hidden;
 }
-.hero-overlay {
+.hero::after {
+  content: "";
   position: absolute;
-  top:0; left:0;
-  width:100%; height:100%;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
   background: rgba(0,0,0,0.45);
-  z-index:1;
 }
-.hero-content{
+.hero h1 {
   position: relative;
-  z-index:2;
-  max-width:800px;
-  padding:2rem;
-  animation: fadeInUp 1.2s ease forwards;
+  font-size: 3.5rem;
+  font-weight: 600;
+  color: var(--dore);
+  text-shadow: 0 4px 20px rgba(0,0,0,0.6);
+  z-index: 2;
 }
-.hero h1{
-  font-size:3rem;
-  color:#d4af37;
-  margin-bottom:1.5rem;
-  letter-spacing:2px;
-  text-shadow:0 4px 20px rgba(0,0,0,0.4);
-  line-height:1.2;
+@keyframes heroZoom {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.05); }
 }
-
-/* Animation */
-@keyframes fadeInUp {
-  from {opacity:0; transform: translateY(40px);}
-  to {opacity:1; transform: translateY(0);}
+.hero {
+  animation: heroZoom 12s ease-in-out infinite alternate;
 }
 
-/* Section base */
-section{padding:5rem 5%;max-width:1400px;margin:0 auto}
-.section-title{
-  text-align:center;
-  font-size:2.2rem;
-  margin-bottom:2.5rem;
-  color:var(--anthracite);
-  position:relative;
+/* SECTION TITLES */
+section {
+  padding: 5rem 8%;
 }
-.section-title::after{
-  content:'';
-  position:absolute;
-  bottom:-10px;
-  left:50%;
-  transform:translateX(-50%);
-  width:80px;
-  height:3px;
-  background:var(--dore);
+.section-title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 600;
+  position: relative;
+  margin-bottom: 3rem;
 }
-
-/* About */
-.about-content{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:2.5rem;
-  align-items:center;
-}
-.about-text p{
-  color:#333;
-  font-size:1.02rem;
-  line-height:1.85;
-  margin-bottom:1rem;
-}
-.about-image img{
-  width:100%;
-  border-radius:10px;
-  box-shadow:0 10px 30px rgba(0,0,0,.15);
+.section-title::after {
+  content: "";
+  position: absolute;
+  width: 80px;
+  height: 3px;
+  background: var(--dore);
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-/* Gallery */
-.gallery{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:1.5rem;
+/* ABOUT */
+.about {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 3rem;
 }
-.gallery-item img{
-  width:100%;
-  height:320px;
-  object-fit:cover;
-  border-radius:12px;
-  cursor:pointer;
-  transition:transform .3s ease;
+.about img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
 }
-.gallery-item:hover img{ transform:scale(1.05); }
-
-/* Lightbox */
-.lightbox{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.9);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex-direction:column;
-  opacity:0;
-  visibility:hidden;
-  transition:opacity .3s;
-}
-.lightbox.active{ opacity:1; visibility:visible; }
-.lightbox img{
-  max-width:90%;
-  max-height:80%;
-  border-radius:8px;
-}
-.lightbox-close{
-  position:absolute;
-  top:20px;
-  right:30px;
-  background:none;
-  border:none;
-  font-size:2rem;
-  color:var(--dore);
-  cursor:pointer;
+.about p {
+  margin-bottom: 1rem;
+  line-height: 1.8;
 }
 
-/* Contact */
-.contact-container{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:2rem;
+/* GALLERY */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
 }
-.contact-form{
-  display:flex;
-  flex-direction:column;
-  gap:1rem;
+.gallery img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform .3s;
 }
-.contact-form input, .contact-form textarea{
-  padding:12px;
-  border-radius:8px;
-  border:2px solid var(--gris-clair);
-}
-.submit-btn{
-  background:var(--dore);
-  color:#1A1A1A;
-  padding:12px;
-  border:none;
-  border-radius:30px;
-  cursor:pointer;
-  font-weight:600;
+.gallery img:hover {
+  transform: scale(1.04);
 }
 
-/* Footer */
-footer{
-  background:var(--anthracite);
-  color:var(--blanc-casse);
-  padding:2rem 5%;
-  text-align:center;
+/* LIGHTBOX */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity .3s;
 }
-.social-links{
-  display:flex;
-  justify-content:center;
-  gap:1rem;
-  margin-bottom:1rem;
+.lightbox.active {
+  visibility: visible;
+  opacity: 1;
 }
-.social-links a{
-  color:var(--dore);
-  transition:color 0.3s;
+.lightbox img {
+  max-width: 90%;
+  max-height: 80%;
+  border-radius: 10px;
 }
-.social-links a:hover{
-  color:#fff;
-}
-.social-links svg{
-  width:24px;
-  height:24px;
-  fill:currentColor;
+.lightbox button {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  background: none;
+  border: none;
+  color: var(--dore);
+  font-size: 2rem;
+  cursor: pointer;
 }
 
-/* Responsive */
-@media(max-width:900px){
-  .about-content, .contact-container{grid-template-columns:1fr;}
-  .hero{height:80vh;}
-  .hero h1{font-size:2rem;}
+/* CONTACT */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.contact-form input, .contact-form textarea {
+  padding: 12px;
+  border-radius: 8px;
+  border: 2px solid var(--gris);
+  width: 100%;
+}
+.contact-form button {
+  background: var(--dore);
+  border: none;
+  border-radius: 30px;
+  padding: 12px;
+  color: var(--anthracite);
+  font-weight: 600;
+  cursor: pointer;
+}
+.contact-info a {
+  color: var(--anthracite);
+  text-decoration: none;
+  font-weight: 500;
+}
+.map {
+  margin-top: 2rem;
+}
+
+/* FOOTER */
+footer {
+  background: var(--anthracite);
+  color: white;
+  text-align: center;
+  padding: 3.5rem 1rem;
+}
+footer h3 {
+  color: var(--dore);
+  margin-bottom: 1.2rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+.socials {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+}
+.socials a {
+  color: var(--dore);
+  transition: transform .3s, color .3s;
+}
+.socials a:hover {
+  color: white;
+  transform: scale(1.2);
+}
+.socials svg {
+  width: 40px;
+  height: 40px;
+  fill: currentColor;
+}
+
+/* RESPONSIVE */
+@media(max-width: 900px) {
+  .about { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 2.2rem; text-align: center; }
+  header nav ul { gap: 1rem; }
+  .socials svg { width: 32px; height: 32px; }
 }
 </style>
 </head>
+
 <body>
 
 <header>
   <div class="logo">Intérieurs Privés Rennes</div>
-  <nav class="main-nav">
-    <ul class="nav-links">
+  <nav>
+    <ul>
       <li><a href="#accueil">Accueil</a></li>
       <li><a href="#a-propos">À propos</a></li>
-      <li><a href="#realisations">Nos réalisations</a></li>
+      <li><a href="#realisations">Réalisations</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
-  <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
 </header>
 
 <section class="hero" id="accueil">
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <h1>Créateur d'intérieurs sur mesure</h1>
-  </div>
+  <h1>Créateur d'intérieurs sur mesure</h1>
 </section>
 
 <section id="a-propos">
   <h2 class="section-title">Intérieurs Privés Rennes</h2>
-  <div class="about-content">
-    <div class="about-text">
-      <p>Chez Intérieurs Privés Rennes, nous transformons vos envies en espaces uniques et fonctionnels. Notre expertise repose sur un savoir-faire français du sur mesure, alliant créativité, précision et qualité de réalisation.</p>
-      <p>Chaque projet est co-créé avec nos architectes d'intérieur, qui vous guident de la conception à la réception, en veillant à ce que chaque détail réponde parfaitement à vos besoins et à vos goûts.</p>
+  <div class="about">
+    <div>
+      <p>Chez Intérieurs Privés Rennes, nous donnons vie à vos envies d’aménagement sur mesure. Notre équipe imagine et conçoit des espaces élégants et fonctionnels, adaptés à vos besoins et à votre style de vie.</p>
+      <p>De la cuisine au dressing, en passant par la chambre ou le salon, chaque projet est pensé avec soin pour offrir un équilibre parfait entre esthétique, ergonomie et confort.</p>
     </div>
-    <div class="about-image">
-      <img src="images/a-propos-rennes.jpg" alt="Intérieurs Privés Rennes">
-    </div>
+    <img src="images/a-propos-rennes.jpg" alt="À propos Intérieurs Privés Rennes">
   </div>
 </section>
 
 <section id="realisations">
-  <h2 class="section-title">Nos réalisations</h2>
+  <h2 class="section-title">Nos Réalisations</h2>
   <div class="gallery">
-    <div class="gallery-item"><img src="images/tv-entree-showroom.jpg" alt="Meuble TV sur mesure"></div>
-    <div class="gallery-item"><img src="images/meuble-tv-cecile.jpg" alt="Meuble TV bibliothèque"></div>
-    <div class="gallery-item"><img src="images/salon.jpg" alt="Salon contemporain"></div>
-    <div class="gallery-item"><img src="images/tv-biblio-showroom.jpg" alt="Bibliothèque intégrée"></div>
-    <div class="gallery-item"><img src="images/tete-de-lit-showroom.jpg" alt="Tête de lit showroom"></div>
-    <div class="gallery-item"><img src="images/tete-de-lit-emma.jpg" alt="Tête de lit Emma"></div>
-    <div class="gallery-item"><img src="images/salon-mauranne.jpg" alt="Salon Mauranne"></div>
-    <div class="gallery-item"><img src="images/salon-margaux.jpg" alt="Salon Margaux"></div>
-    <div class="gallery-item"><img src="images/salon-emma.jpg" alt="Salon Emma"></div>
-    <div class="gallery-item"><img src="images/bibliotheque-arrondie.jpg" alt="Bibliothèque arrondie"></div>
+    <img src="images/salon-margaux.jpg" alt="Salon Margaux">
+    <img src="images/salon-mauranne.jpg" alt="Salon Mauranne">
+    <img src="images/salon-emma.jpg" alt="Salon Emma">
+    <img src="images/meuble-tv-cecile.jpg" alt="Meuble TV Cécile">
+    <img src="images/tv-biblio-showroom.jpg" alt="Bibliothèque Showroom">
+    <img src="images/tv-entree-showroom.jpg" alt="Entrée Showroom">
+    <img src="images/tete-de-lit-emma.jpg" alt="Tête de lit Emma">
+    <img src="images/tete-de-lit-showroom.jpg" alt="Tête de lit Showroom">
+    <img src="images/bibliotheque-arrondie.jpg" alt="Bibliothèque arrondie">
+    <img src="images/salon.jpg" alt="Salon général">
   </div>
 </section>
 
+<div class="lightbox" id="lightbox">
+  <button onclick="closeLightbox()">×</button>
+  <img src="" alt="zoom" id="lightbox-img">
+</div>
+
 <section id="contact">
   <h2 class="section-title">Contactez-nous</h2>
-  <div class="contact-container">
+  <div class="contact-grid">
     <div class="contact-info">
       <p><strong>📍 Adresse :</strong><br>105 Route de Saint-Malo<br>35520 La Chapelle-des-Fougeretz</p>
       <p><strong>📞 Téléphone :</strong><br><a href="tel:+33246871093">02 46 87 10 93</a></p>
       <p><strong>✉️ Email :</strong><br><a href="mailto:rennes@interieurs-prives.com">rennes@interieurs-prives.com</a></p>
     </div>
     <form class="contact-form" action="https://formspree.io/f/mblzzgny" method="POST">
-      <input type="text" name="name" placeholder="Nom" required>
-      <input type="email" name="email" placeholder="Email" required>
+      <input type="text" name="name" placeholder="Votre nom" required>
+      <input type="email" name="email" placeholder="Votre email" required>
       <textarea name="message" rows="6" placeholder="Votre message" required></textarea>
-      <button type="submit" class="submit-btn">Envoyer</button>
+      <button type="submit">Envoyer</button>
     </form>
   </div>
-  <div class="map-container" style="margin-top:2rem;">
+
+  <div class="map">
     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5319.516079850846!2d-1.7322446231771882!3d48.19201324736939!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x480ee7a4226336a5%3A0x3350fb9ad1aafdaa!2s105%20Rte%20de%20Saint-Malo%2C%2035520%20La%20Chapelle-des-Fougeretz!5e0!3m2!1sfr!2sfr!4v1760085107158!5m2!1sfr!2sfr"
-    width="100%" height="450" style="border:0;" allowfullscreen loading="lazy"></iframe>
+    width="100%" height="400" style="border:0;" allowfullscreen loading="lazy"></iframe>
   </div>
 </section>
 
 <footer>
-  <div class="social-links">
+  <h3>Plus d’inspiration par ici :</h3>
+  <div class="socials">
     <a href="https://www.instagram.com/interieursprivesrennes/" target="_blank" title="Instagram">
       <svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm5 6.5A4.5 4.5 0 1016.5 13 4.5 4.5 0 0012 8.5zm0 7.4A2.9 2.9 0 1114.9 13 2.9 2.9 0 0112 15.9zM18.6 6.4a1.06 1.06 0 11-1.06-1.06 1.06 1.06 0 011.06 1.06z"/></svg>
     </a>
@@ -371,4 +361,22 @@ footer{
       <svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12c0 3.2 1.6 6 4.1 7.7-.06-.65-.1-1.66.03-2.38.12-.65.8-4.16.8-4.16s-.2-.38-.2-.94c0-.87.5-1.52 1.12-1.52.53 0 .78.4.78.88 0 .53-.34 1.32-.52 2.06-.15.62.33 1.13.98 1.13 1.18 0 2.08-1.24 2.08-3.03 0-1.58-1.14-2.68-2.77-2.68-1.89 0-3.02 1.42-3.02 2.89 0 .57.22 1.18.49 1.51l-.19.7c-.06.23-.21.28-.36.17C6.1 13.28 5.6 11.21 5.6 9.82 5.6 6.76 8.05 4 12 4c2.9 0 4.96 1.88 4.96 4.38 0 2.96-1.37 5.07-3.4 5.07-.9 0-1.75-.47-2.04-1.02 0 0-.48 1.83-.58 2.28-.16.6-.6 1.21-.9 1.68C9.7 18.9 10.82 19 12 19c5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
     </a>
   </div>
- 
+  <p>&copy; 2025 Intérieurs Privés Rennes. Tous droits réservés.</p>
+</footer>
+
+<script>
+const images = document.querySelectorAll('.gallery img');
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+
+images.forEach(img => {
+  img.addEventListener('click', () => {
+    lightboxImg.src = img.src;
+    lightbox.classList.add('active');
+  });
+});
+function closeLightbox(){ lightbox.classList.remove('active'); }
+</script>
+
+</body>
+</html>
