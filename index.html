@@ -1,4 +1,304 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Intérieurs Privés Rennes — Créateur d'intérieurs sur mesure</title>
 
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Lora:wght@400;600&display=swap" rel="stylesheet" />
+
+<style>
+:root{
+  --anthracite:#1A1A1A;
+  --blanc-casse:#F8F8F8;
+  --dore:#C6A664;
+  --gris-clair:#E5E5E5;
+}
+
+/* Reset & Base */
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:'Poppins',sans-serif;
+  background:var(--blanc-casse);
+  color:var(--anthracite);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* Header */
+header{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  background: rgba(26,26,26,0.95);
+  backdrop-filter: blur(8px);
+  z-index:1100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 5%;
+  transition: background 0.3s;
+}
+
+header:hover { background: rgba(26,26,26,1); }
+
+.logo {
+  font-family: 'Lora', serif;
+  color: var(--dore);
+  font-weight: 600;
+  font-size: 1.4rem;
+}
+
+/* Nav desktop */
+.main-nav ul {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--blanc-casse);
+  text-decoration: none;
+  position: relative;
+  padding: 6px 0;
+  transition: color 0.3s;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 2px;
+  background: var(--dore);
+  transition: width 0.3s;
+}
+
+.nav-links a:hover {
+  color: var(--dore);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* Burger menu */
+.burger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  height: 22px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.burger span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background: var(--blanc-casse);
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+/* HERO */
+.hero {
+  position: relative;
+  height: 100vh;
+  background-image: url('images/hero-poster.jpg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  overflow: hidden;
+}
+
+.hero-overlay {
+  position: absolute;
+  top:0; left:0;
+  width:100%; height:100%;
+  background: rgba(0,0,0,0.45);
+  z-index:1;
+}
+
+.hero-content{
+  position: relative;
+  z-index:2;
+  max-width:800px;
+  padding:2rem;
+  animation: fadeInUp 1.2s ease forwards;
+}
+
+.hero h1{
+  font-size:3rem;
+  color:#d4af37;
+  margin-bottom:1.5rem;
+  letter-spacing:2px;
+  text-shadow:0 4px 20px rgba(0,0,0,0.4);
+  line-height:1.2;
+}
+
+/* Animation */
+@keyframes fadeInUp {
+  from {opacity:0; transform: translateY(40px);}
+  to {opacity:1; transform: translateY(0);}
+}
+
+/* Sections */
+section{padding:5rem 5%;max-width:1400px;margin:0 auto}
+
+.section-title{
+  text-align:center;
+  font-size:2.2rem;
+  margin-bottom:2.5rem;
+  color:var(--anthracite);
+  position:relative;
+}
+
+.section-title::after{
+  content:'';
+  position:absolute;
+  bottom:-10px;
+  left:50%;
+  transform:translateX(-50%);
+  width:80px;
+  height:3px;
+  background:var(--dore);
+}
+
+/* About */
+.about-content{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:2.5rem;
+  align-items:center;
+}
+
+.about-text p{
+  color:#333;
+  font-size:1.02rem;
+  line-height:1.85;
+  margin-bottom:1rem;
+}
+
+.about-image img{
+  width:100%;
+  border-radius:10px;
+  display:block;
+  box-shadow:0 10px 30px rgba(0,0,0,.15);
+  transition: transform 0.3s ease;
+}
+
+.about-image img:hover{
+  transform: scale(1.02);
+}
+
+/* Gallery */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:1.5rem;
+}
+
+.gallery-item{
+  position:relative;
+  overflow:hidden;
+  border-radius:12px;
+  cursor:pointer;
+  box-shadow:0 6px 20px rgba(0,0,0,.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-item:hover{
+  transform:translateY(-6px);
+  box-shadow:0 18px 40px rgba(0,0,0,.18);
+}
+
+.gallery-item img{
+  width:100%;
+  height:320px;
+  object-fit:cover;
+  display:block;
+  transition: transform 0.4s ease;
+}
+
+.gallery-item:hover img{
+  transform:scale(1.08);
+}
+
+/* Caption overlay - Desktop */
+.caption-overlay{
+  position:absolute;
+  bottom:0;
+  left:0;
+  right:0;
+  background:linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.6) 70%, transparent 100%);
+  color:#fff;
+  padding:2rem 1.2rem 1.2rem;
+  font-size:0.92rem;
+  line-height:1.5;
+  transform:translateY(100%);
+  transition:transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events:none;
+}
+
+.gallery-item:hover .caption-overlay,
+.gallery-item.active .caption-overlay{
+  transform:translateY(0);
+}
+
+/* Lightbox */
+.lightbox{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.92);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:2rem;
+  visibility:hidden;
+  opacity:0;
+  transition:opacity .25s;
+  z-index:9999;
+  flex-direction:column;
+}
+
+.lightbox.active{
+  visibility:visible;
+  opacity:1;
+}
+
+.lightbox img{
+  max-width:92%;
+  max-height:84%;
+  border-radius:8px;
+  box-shadow:0 30px 80px rgba(0,0,0,.6);
+}
+
+.lightbox .caption{
+  color:#fff;
+  margin-top:1.2rem;
+  text-align:center;
+  font-size:1rem;
+  max-width:800px;
+  line-height:1.5;
+}
+
+.lightbox-close{
+  position:absolute;
+  top:24px;
+  right:28px;
+  color:var(--dore);
   font-size:2rem;
   cursor:pointer;
   z-index:10000;
@@ -427,7 +727,8 @@ footer{
       <button class="submit-btn" type="submit">Envoyer</button>
     </form>
     <div class="map-container" aria-hidden="false">
-      <iframe src="<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10639.02654946133!2d-1.729554495409013!3d48.19204026898843!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x480ee7a41993ab8f%3A0xdab5d1c5a56fa787!2sInt%C3%A9rieurs%20Priv%C3%A9s%20La%20Chapelle-des-Fougeretz!5e0!3m2!1sfr!2sfr!4v1760971289650!5m2!1sfr!2sfr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>"
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5319.516079850846!2d-1.7322446231771882!3d48.19201324736939!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x480ee7a4226336a5%3A0x3350fb9ad1aafdaa!2s105%20Rte%20de%20Saint-Malo%2C%2035520%20La%20Chapelle-des-Fougeretz!5e0!3m2!1sfr!2sfr!4v1760085107158!5m2!1sfr!2sfr"
+      width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
   </div>
 </section>
