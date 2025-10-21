@@ -25,139 +25,340 @@ body{
   background:var(--blanc-casse);
   color:var(--anthracite);
   line-height:1.6;
+  -webkit-font-smoothing:antialiased;
 }
 
-/* HEADER */
+/* Header */
 header{
   position:fixed;
-  top:0;left:0;width:100%;
+  top:0;
+  left:0;
+  width:100%;
   background: rgba(26,26,26,0.95);
   backdrop-filter: blur(8px);
   z-index:1100;
-  display:flex;justify-content:space-between;align-items:center;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
   padding:1rem 5%;
-  transition: background 0.3s;
+  transition:background 0.3s;
 }
-header:hover{background:rgba(26,26,26,1)}
-.logo{
+
+header:hover { background: rgba(26,26,26,1); }
+
+.logo {
   font-family:'Lora',serif;
   color:var(--dore);
   font-weight:600;
   font-size:1.4rem;
 }
-.main-nav ul{display:flex;gap:2rem;list-style:none;}
-.nav-links a{color:var(--blanc-casse);text-decoration:none;position:relative;padding:6px 0;transition:color 0.3s;}
-.nav-links a::after{content:'';position:absolute;left:0;bottom:-6px;width:0;height:2px;background:var(--dore);transition:width 0.3s;}
-.nav-links a:hover{color:var(--dore);}
-.nav-links a:hover::after{width:100%;}
+
+/* Nav desktop */
+.main-nav ul {
+  display:flex;
+  gap:2rem;
+  list-style:none;
+}
+
+.nav-links a {
+  color:var(--blanc-casse);
+  text-decoration:none;
+  position:relative;
+  padding:6px 0;
+  transition:color 0.3s;
+}
+
+.nav-links a::after {
+  content:'';
+  position:absolute;
+  left:0;
+  bottom:-6px;
+  width:0;
+  height:2px;
+  background:var(--dore);
+  transition:width 0.3s;
+}
+
+.nav-links a:hover {
+  color:var(--dore);
+}
+
+.nav-links a:hover::after {
+  width:100%;
+}
+
+/* Burger menu */
+.burger {
+  display:none;
+  flex-direction:column;
+  justify-content:space-between;
+  width:28px;
+  height:22px;
+  background:transparent;
+  border:none;
+  cursor:pointer;
+}
+
+.burger span {
+  display:block;
+  height:3px;
+  width:100%;
+  background:var(--blanc-casse);
+  border-radius:3px;
+  transition:all 0.3s ease;
+}
 
 /* HERO */
 .hero {
-  position: relative;
-  width: 100%;
-  height: 100vh; /* pleine hauteur */
-  background-image: url('images/hero-poster.jpg');
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: #fff;
-  overflow: hidden;
+  position:relative;
+  height:90vh;
+  background-image:url('images/hero-poster.jpg');
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:#fff;
+  width:100%;
 }
+
 .hero-overlay {
-  position: absolute;
-  top:0;left:0;width:100%;height:100%;
-  background: rgba(0,0,0,0.45);
+  position:absolute;
+  top:0;left:0;
+  width:100%;height:100%;
+  background:rgba(0,0,0,0.45);
   z-index:1;
 }
-.hero-content{
-  position:relative;z-index:2;
-  max-width:800px;padding:2rem;
-  animation: fadeInUp 1.2s ease forwards;
+
+.hero-content {
+  position:relative;
+  z-index:2;
+  max-width:900px;
+  padding:2rem;
+  animation:fadeInUp 1.2s ease forwards;
 }
-.hero h1{
+
+.hero h1 {
   font-size:3.2rem;
   color:#d4af37;
+  margin-bottom:1.5rem;
   letter-spacing:2px;
   text-shadow:0 4px 20px rgba(0,0,0,0.4);
   line-height:1.2;
 }
+
 @keyframes fadeInUp {
-  from {opacity:0;transform:translateY(40px);}
-  to {opacity:1;transform:translateY(0);}
+  from {opacity:0; transform:translateY(40px);}
+  to {opacity:1; transform:translateY(0);}
 }
 
-/* SECTIONS */
+/* Sections */
 section{padding:5rem 5%;max-width:1400px;margin:0 auto}
-.section-title{text-align:center;font-size:2.2rem;margin-bottom:2.5rem;color:var(--anthracite);position:relative;}
-.section-title::after{content:'';position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);width:80px;height:3px;background:var(--dore);}
 
-/* ABOUT */
-.about-content{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:center;}
-.about-image img{width:100%;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.15);}
-.about-text p{color:#333;font-size:1.02rem;line-height:1.85;margin-bottom:1rem;}
+.section-title{
+  text-align:center;
+  font-size:2.2rem;
+  margin-bottom:2.5rem;
+  color:var(--anthracite);
+  position:relative;
+}
 
-/* GALLERY */
-.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;}
-.gallery-item{position:relative;overflow:hidden;border-radius:12px;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.08);transition: transform 0.3s ease;}
-.gallery-item:hover{transform:translateY(-6px);}
-.gallery-item img{width:100%;height:320px;object-fit:cover;display:block;transition: transform 0.4s ease;}
-.gallery-item:hover img{transform:scale(1.08);}
-.caption-overlay{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.6) 70%, transparent 100%);color:#fff;padding:2rem 1.2rem 1.2rem;font-size:0.92rem;line-height:1.5;transform:translateY(100%);transition:transform 0.4s;}
-.gallery-item:hover .caption-overlay{transform:translateY(0);}
+.section-title::after{
+  content:'';
+  position:absolute;
+  bottom:-10px;
+  left:50%;
+  transform:translateX(-50%);
+  width:80px;
+  height:3px;
+  background:var(--dore);
+}
 
-/* FOOTER */
+/* About */
+.about-content{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:2.5rem;
+  align-items:center;
+}
+
+.about-text p{
+  color:#333;
+  font-size:1.02rem;
+  line-height:1.85;
+  margin-bottom:1rem;
+}
+
+.about-image img{
+  width:100%;
+  border-radius:10px;
+  box-shadow:0 10px 30px rgba(0,0,0,.15);
+  transition:transform 0.3s ease;
+}
+
+.about-image img:hover{
+  transform:scale(1.02);
+}
+
+/* Gallery */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:1.5rem;
+}
+
+.gallery-item{
+  position:relative;
+  overflow:hidden;
+  border-radius:12px;
+  cursor:pointer;
+  box-shadow:0 6px 20px rgba(0,0,0,.08);
+  transition:transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-item:hover{
+  transform:translateY(-6px);
+  box-shadow:0 18px 40px rgba(0,0,0,.18);
+}
+
+.gallery-item img{
+  width:100%;
+  height:320px;
+  object-fit:cover;
+  transition:transform 0.4s ease;
+}
+
+.gallery-item:hover img{
+  transform:scale(1.08);
+}
+
+/* Caption overlay */
+.caption-overlay{
+  position:absolute;
+  bottom:0;
+  left:0;
+  right:0;
+  background:linear-gradient(to top,rgba(0,0,0,0.85) 0%,rgba(0,0,0,0.6) 70%,transparent 100%);
+  color:#fff;
+  padding:2rem 1.2rem 1.2rem;
+  font-size:0.92rem;
+  line-height:1.5;
+  transform:translateY(100%);
+  transition:transform 0.4s ease;
+}
+
+.gallery-item:hover .caption-overlay{
+  transform:translateY(0);
+}
+
+/* Lightbox */
+.lightbox{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.92);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  padding:2rem;
+  visibility:hidden;
+  opacity:0;
+  transition:opacity .25s;
+  z-index:9999;
+}
+
+.lightbox.active{
+  visibility:visible;
+  opacity:1;
+}
+
+.lightbox img{
+  max-width:92%;
+  max-height:84%;
+  border-radius:8px;
+  box-shadow:0 30px 80px rgba(0,0,0,.6);
+}
+
+.lightbox .caption{
+  color:#fff;
+  margin-top:1.2rem;
+  text-align:center;
+  font-size:1rem;
+  max-width:800px;
+  line-height:1.5;
+}
+
+.lightbox-close{
+  position:absolute;
+  top:24px;
+  right:28px;
+  color:var(--dore);
+  font-size:2rem;
+  cursor:pointer;
+  background:transparent;
+  border:none;
+}
+
+/* Footer */
 footer{
   background:var(--anthracite);
   color:var(--blanc-casse);
   padding:3rem 5%;
   text-align:center;
 }
-footer h3{
-  font-size:1.6rem;
+
+.footer-title{
+  font-size:1.4rem;
+  margin-bottom:1rem;
   color:var(--dore);
-  margin-bottom:1.2rem;
+  font-weight:500;
 }
+
 .social-links{
   display:flex;
   justify-content:center;
-  align-items:center;
   gap:2rem;
-  flex-wrap:wrap;
+  margin-top:1.5rem;
 }
+
 .social-links a{
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  width:65px;
-  height:65px;
-  border-radius:50%;
+  width:60px;
+  height:60px;
+  border-radius:10px;
+  background:transparent;
   color:var(--dore);
   transition:all 0.3s;
 }
+
 .social-links a svg{
-  width:35px;
-  height:35px;
+  width:32px;
+  height:32px;
   fill:currentColor;
 }
+
 .social-links a:hover{
+  background:rgba(255,255,255,.06);
   color:#fff;
-  background:rgba(255,255,255,0.1);
 }
 
 /* Responsive */
 @media(max-width:980px){
-  .about-content{grid-template-columns:1fr}
-  .hero{height:80vh;}
-  .hero h1{font-size:2.2rem;}
+  .about-content{grid-template-columns:1fr;}
+  .hero{height:70vh;}
+}
+
+@media(max-width:720px){
+  .hero h1{font-size:2rem;}
 }
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
 <header>
   <div class="logo">Intérieurs Privés Rennes</div>
   <nav class="main-nav">
@@ -168,85 +369,93 @@ footer h3{
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
+  <button class="burger"><span></span><span></span><span></span></button>
 </header>
 
-<!-- HERO -->
 <section class="hero" id="accueil">
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <h1>Créateurs d’intérieurs sur mesure</h1>
+    <h1>Créateur d'intérieurs sur mesure</h1>
   </div>
 </section>
 
-<!-- À PROPOS -->
 <section id="a-propos">
   <h2 class="section-title">Intérieurs Privés Rennes</h2>
   <div class="about-content">
     <div class="about-text">
-      <p>Chez Intérieurs Privés Rennes, nous transformons vos envies en espaces uniques et fonctionnels. Notre expertise repose sur un savoir-faire français du sur mesure, alliant créativité, précision et qualité de réalisation.</p>
-      <p>Chaque projet est co-créé avec nos architectes d'intérieur, qui vous guident de la conception à la réception, en veillant à ce que chaque détail réponde parfaitement à vos besoins et à vos goûts.</p>
-      <p>Qu'il s'agisse d'aménagement, de rénovation ou de création de mobilier sur mesure, nous concevons des espaces qui reflètent votre style et votre personnalité.</p>
+      <p>Chez Intérieurs Privés Rennes, nous transformons vos envies en espaces uniques et fonctionnels...</p>
     </div>
     <div class="about-image">
-      <img src="images/a-propos-rennes.jpg" alt="Intérieurs Privés Rennes - savoir-faire sur mesure" />
+      <img src="images/a-propos-rennes.jpg" alt="Intérieurs Privés Rennes" />
     </div>
   </div>
 </section>
 
-<!-- RÉALISATIONS -->
 <section id="realisations">
   <h2 class="section-title">Nos réalisations</h2>
   <div class="gallery">
-    <div class="gallery-item"><img src="images/tv-entree-showroom.jpg" alt="Meuble TV sur mesure"></div>
-    <div class="gallery-item"><img src="images/meuble-tv-cecile.jpg" alt="Bibliothèque sur mesure"></div>
-    <div class="gallery-item"><img src="images/salon.jpg" alt="Salon sur mesure"></div>
-    <div class="gallery-item"><img src="images/tv-biblio-showroom.jpg" alt="Bibliothèque intégrée"></div>
-    <div class="gallery-item"><img src="images/tete-de-lit-showroom.jpg" alt="Tête de lit design"></div>
-    <div class="gallery-item"><img src="images/tete-de-lit-emma.jpg" alt="Tête de lit sur mesure"></div>
-    <div class="gallery-item"><img src="images/salon-mauranne.jpg" alt="Salon chaleureux"></div>
-    <div class="gallery-item"><img src="images/salon-margaux.jpg" alt="Salon moderne"></div>
-    <div class="gallery-item"><img src="images/salon-emma.jpg" alt="Salon contemporain"></div>
-    <div class="gallery-item"><img src="images/bibliotheque-arrondie.jpg" alt="Bibliothèque arrondie"></div>
+    <div class="gallery-item"><img src="images/salon-margaux.jpg" alt="Salon moderne - Projet Margaux"><div class="caption-overlay">Salon harmonieux — Projet Margaux</div></div>
+    <div class="gallery-item"><img src="images/tv-entree-showroom.jpg" alt="Meuble TV sur mesure"><div class="caption-overlay">Meuble TV sur mesure — Showroom</div></div>
+    <div class="gallery-item"><img src="images/tete-de-lit-emma.jpg" alt="Tête de lit — Emma"><div class="caption-overlay">Tête de lit élégante — Projet Emma</div></div>
   </div>
 </section>
 
-<!-- CONTACT -->
 <section id="contact">
   <h2 class="section-title">Contactez-nous</h2>
   <div class="contact-container">
     <div class="contact-info">
-      <p>📍 105 Route de Saint-Malo<br>35520 La Chapelle-des-Fougeretz</p>
-      <p>📞 <a href="tel:+33246871093">02 46 87 10 93</a></p>
-      <p>✉️ <a href="mailto:rennes@interieurs-prives.com">rennes@interieurs-prives.com</a></p>
+      <div><h3>Adresse</h3><p>105 Route de Saint-Malo<br>35520 La Chapelle-des-Fougeretz</p></div>
+      <div><h3>Téléphone</h3><p><a href="tel:+33246871093">02 46 87 10 93</a></p></div>
+      <div><h3>Email</h3><p><a href="mailto:rennes@interieurs-prives.com">rennes@interieurs-prives.com</a></p></div>
     </div>
     <form class="contact-form" action="https://formspree.io/f/mblzzgny" method="POST">
-      <input type="text" name="name" placeholder="Nom" required>
-      <input type="email" name="email" placeholder="Email" required>
-      <textarea name="message" rows="6" placeholder="Votre message..." required></textarea>
+      <label>Nom <input name="name" type="text" required></label>
+      <label>Email <input name="email" type="email" required></label>
+      <label>Message <textarea name="message" rows="6" required></textarea></label>
       <button class="submit-btn" type="submit">Envoyer</button>
     </form>
   </div>
-  <div class="map-container" style="margin-top:2rem;">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5319.516079850846!2d-1.7322446231771882!3d48.19201324736939!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x480ee7a4226336a5%3A0x3350fb9ad1aafdaa!2s105%20Rte%20de%20Saint-Malo%2C%2035520%20La%20Chapelle-des-Fougeretz!5e0!3m2!1sfr!2sfr!4v1760085107158!5m2!1sfr!2sfr" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-  </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
-  <h3>Plus d’inspiration par ici</h3>
+  <div class="footer-title">Plus d'inspiration par ici</div>
   <div class="social-links">
-    <a href="https://www.instagram.com/interieursprivesrennes" target="_blank" aria-label="Instagram">
-      <svg viewBox="0 0 24 24"><path d="M7.5 2A5.5 5.5 0 0 0 2 7.5v9A5.5 5.5 0 0 0 7.5 22h9a5.5 5.5 0 0 0 5.5-5.5v-9A5.5 5.5 0 0 0 16.5 2h-9Zm0 2h9A3.5 3.5 0 0 1 20 7.5v9a3.5 3.5 0 0 1-3.5 3.5h-9A3.5 3.5 0 0 1 4 16.5v-9A3.5 3.5 0 0 1 7.5 4ZM12 7a5 5 0 1 0 0 10a5 5 0 0 0 0-10Zm0 2a3 3 0 1 1 0 6a3 3 0 0 1 0-6Zm5.25-.75a1.25 1.25 0 1 1 0 2.5a1.25 1.25 0 0 1 0-2.5Z"/></svg>
+    <a href="https://www.instagram.com/interieursprivesrennes" aria-label="Instagram">
+      <svg viewBox="0 0 24 24"><path d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm10 2a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h10z"/><circle cx="12" cy="12" r="3.2"/><circle cx="17.5" cy="6.5" r="1.5"/></svg>
     </a>
-    <a href="https://www.facebook.com/interieursprives" target="_blank" aria-label="Facebook">
-      <svg viewBox="0 0 24 24"><path d="M13.5 9H16l-.3 3H13.5v9H10.5V12H8V9h2.5V7.25C10.5 4.35 11.85 3 14.5 3h2v3h-2c-.45 0-.5.2-.5.5V9Z"/></svg>
-    </a>
-    <a href="https://www.pinterest.fr/interieursprives" target="_blank" aria-label="Pinterest">
-      <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-3.37 19.42c-.05-.83-.1-2.1.02-3c.12-.84.77-5.36.77-5.36s-.19-.39-.19-.96c0-.9.52-1.57 1.16-1.57.55 0 .82.41.82.9 0 .55-.35 1.37-.53 2.12c-.15.63.33 1.14.98 1.14c1.18 0 2.09-1.24 2.09-3.03c0-1.59-1.15-2.71-2.8-2.71c-1.9 0-3.01 1.42-3.01 2.89c0 .57.22 1.18.49 1.51c.05.06.06.12.05.19c-.06.21-.2.69-.22.78c-.03.12-.1.15-.23.09c-.86-.4-1.4-1.65-1.4-2.66c0-2.16 1.57-4.15 4.54-4.15c2.38 0 4.22 1.7 4.22 3.98c0 2.36-1.49 4.27-3.56 4.27c-.69 0-1.34-.36-1.56-.78l-.43 1.63c-.16.61-.6 1.37-.9 1.83A10 10 0 1 0 12 2Z"/></svg>
+    <a href="https://www.pinterest.fr/interieursprivesrennes" aria-label="Pinterest">
+      <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.2 2.7 7.8 6.5 9.2-.1-.8-.2-2.1 0-3 .2-.8 1.5-5 1.5-5s-.4-.8-.4-2c0-1.9 1.1-3.3 2.4-3.3 1.1 0 1.7.8 1.7 1.8 0 1.1-.7 2.8-1 4.3-.3 1.3.7 2.3 2 2.3 2.4 0 4.1-2.5 4.1-6.1 0-3.2-2.3-5.5-5.7-5.5-3.9 0-6.3 2.9-6.3 5.9 0 1.1.4 2.2 1 2.8.1.1.1.1 0 .3l-.4 1.6c-.1.2-.2.2-.4.1-1.4-.6-2.3-2.6-2.3-4.2 0-3.4 2.4-6.5 7-6.5 3.7 0 6.6 2.7 6.6 6.3 0 3.7-2.3 6.6-5.5 6.6-1.1 0-2.2-.6-2.5-1.3 0 0-.6 2.2-.7 2.7-.2.8-.6 1.8-.9 2.4.7.2 1.5.3 2.2.3 5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg>
     </a>
   </div>
-  <p style="color:#ccc;margin-top:1rem;">© 2025 Intérieurs Privés Rennes – Tous droits réservés</p>
 </footer>
 
+<script>
+(function(){
+const galleryItems=document.querySelectorAll('.gallery-item');
+const lightbox=document.createElement('div');
+lightbox.className='lightbox';
+lightbox.innerHTML='<button class="lightbox-close">×</button><img alt=""><div class="caption"></div>';
+document.body.appendChild(lightbox);
+
+const lbImg=lightbox.querySelector('img');
+const lbCaption=lightbox.querySelector('.caption');
+const closeBtn=lightbox.querySelector('.lightbox-close');
+
+galleryItems.forEach(item=>{
+  const img=item.querySelector('img');
+  img.addEventListener('click',()=>{
+    lbImg.src=img.src;
+    lbCaption.textContent=item.querySelector('.caption-overlay').textContent;
+    lightbox.classList.add('active');
+    document.body.style.overflow='hidden';
+  });
+});
+
+closeBtn.addEventListener('click',()=>{
+  lightbox.classList.remove('active');
+  document.body.style.overflow='';
+});
+})();
+</script>
 </body>
 </html>
